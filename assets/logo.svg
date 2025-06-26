@@ -1,0 +1,55 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Gradient definition for the flame effect -->
+        <linearGradient id="flameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+            <stop offset="25%" style="stop-color:#f7931e;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#e91e63;stop-opacity:1" />
+            <stop offset="75%" style="stop-color:#9c27b0;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3f51b5;stop-opacity:1" />
+        </linearGradient>
+        
+        <!-- Glow effect -->
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    
+    <!-- Main flame shape -->
+    <path d="M20 2 
+             C24 6, 28 10, 28 16
+             C28 20, 26 22, 24 24
+             C26 26, 28 28, 28 32
+             C28 36, 24 38, 20 38
+             C16 38, 12 36, 12 32
+             C12 28, 14 26, 16 24
+             C14 22, 12 20, 12 16
+             C12 10, 16 6, 20 2 Z" 
+          fill="url(#flameGradient)" 
+          filter="url(#glow)"/>
+    
+    <!-- Inner flame detail -->
+    <path d="M20 8
+             C22 10, 24 12, 24 16
+             C24 18, 23 19, 22 20
+             C23 21, 24 22, 24 24
+             C24 26, 22 28, 20 28
+             C18 28, 16 26, 16 24
+             C16 22, 17 21, 18 20
+             C17 19, 16 18, 16 16
+             C16 12, 18 10, 20 8 Z" 
+          fill="rgba(255,255,255,0.3)"/>
+    
+    <!-- Flame tip highlight -->
+    <ellipse cx="20" cy="6" rx="2" ry="4" fill="rgba(255,255,255,0.5)"/>
+    
+    <!-- Card representation at the base -->
+    <rect x="14" y="30" width="12" height="8" rx="2" fill="rgba(255,255,255,0.8)"/>
+    <rect x="15" y="31" width="10" height="1" rx="0.5" fill="url(#flameGradient)"/>
+    <rect x="15" y="33" width="7" height="1" rx="0.5" fill="url(#flameGradient)" opacity="0.7"/>
+    <rect x="15" y="35" width="5" height="1" rx="0.5" fill="url(#flameGradient)" opacity="0.5"/>
+</svg>
