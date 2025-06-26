@@ -1,0 +1,50 @@
+Crée un site web vitrine statique (HTML, CSS, JS) pour une startup appelée Fidely, spécialisée dans la gestion numérique de cartes de fidélité. Le site doit être responsive, moderne et inspiré.
+🧭 Structure attendue :
+
+    Accueil
+        Hero section avec slogan, description courte et call-to-action visible
+        Mention claire que l’application mobile Fidely est au cœur de l’expérience utilisateur
+    Fonctionnalités
+        Présentation en cartes illustrant les cas d’usage de l’app mobile
+    Avantages
+        Section avec icônes et textes courts
+    Comment ça marche
+        Étapes claires et visuelles, centrées sur l’usage de l’application mobile
+    Nos Tarifs
+        Trois offres : Basique, Pro, Entreprise (grille ou cartes animées)
+    Pied de page
+        Mentions légales, contacts, liens vers réseaux sociaux
+
+🎨 Charte graphique :
+
+    Couleurs principales :
+    #ffc400 (jaune), #ec1c24 (rouge), #9b4ea6 (violet), #00b5d9 (turquoise)
+        un dégradé dynamique du rouge vers le turquoise
+    Fond : blanc ou très clair
+    Logo : forme de flamme abstraite avec un effet dégradé (orange → rose → violet → bleu)
+
+🧱 Design :
+
+    Polices modernes : Open Sans, Montserrat ou Poppins
+    Composants arrondis, flat design, icônes modernes
+    Transitions douces entre les sections (scroll, fade-in, etc.)
+    Boutons call-to-action visibles (en dégradé ou jaune vif)
+    Section tarifs bien structurée ou animée (CSS ou JS)
+
+🛠 Technologies :
+
+    HTML5 / CSS3 / JavaScript
+    Utilisation possible de :
+        GSAP ou AOS pour les animations
+        Bootstrap ou Tailwind CSS pour la mise en page responsive
+        Font Awesome ou Heroicons pour les icônes
+    Code bien organisé en fichiers séparés (index.html, style.css, script.js)
+
+📱 Spécificité :
+
+    L’application mobile Fidely est au cœur du projet :
+    Le site doit mettre en avant l’expérience mobile, avec des visuels de l’app, des démonstrations d’usage, et des appels à télécharger l’application.
+
+🎯 Objectif :
+
+Créer un site vitrine élégant, rapide et professionnel pour séduire commerçants et partenaires potentiels, susciter la confiance et l’envie de tester ou s’inscrire à Fidely via son application mobile.
