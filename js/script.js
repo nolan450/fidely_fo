@@ -74,9 +74,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             return;
         }
         
+        console.log('Trying to navigate to:', targetId);
         const target = document.querySelector(targetId);
         
         if (target) {
+            console.log('Target found:', target);
+            
             // Close mobile menu if open
             if (navToggle && navMenu) {
                 navToggle.classList.remove('active');
@@ -87,6 +90,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             // Calculate scroll position
             const headerHeight = header ? header.offsetHeight : 80;
             const targetPosition = target.offsetTop - headerHeight - 20;
+            
+            console.log('Scrolling to position:', targetPosition);
             
             // Smooth scroll to target
             window.scrollTo({
@@ -99,6 +104,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             setTimeout(() => {
                 anchor.style.transform = '';
             }, 150);
+        } else {
+            console.log('Target not found for:', targetId);
         }
     });
 });
