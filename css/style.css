@@ -218,8 +218,8 @@ h4 { font-size: 1.4rem; }
     display: flex;
     align-items: center;
     position: relative;
-    background: var(--gradient-main);
-    color: var(--text-white);
+    background: var(--bg-white);
+    color: var(--text-dark);
     overflow: hidden;
 }
 
@@ -229,10 +229,7 @@ h4 { font-size: 1.4rem; }
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(244, 180, 0, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(161, 66, 244, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(0, 185, 241, 0.2) 0%, transparent 50%);
+    background: transparent;
 }
 
 .hero .container {
@@ -255,7 +252,7 @@ h4 { font-size: 1.4rem; }
     left: -2rem;
     right: -2rem;
     bottom: -2rem;
-    background: rgba(0, 0, 0, 0.1);
+    background: transparent;
     border-radius: 20px;
     z-index: -1;
 }
@@ -264,13 +261,13 @@ h4 { font-size: 1.4rem; }
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-description {
     font-size: 1.2rem;
     margin-bottom: 2.5rem;
-    opacity: 0.9;
+    opacity: 0.8;
+    color: var(--text-secondary);
 }
 
 .hero-buttons {
@@ -298,15 +295,17 @@ h4 { font-size: 1.4rem; }
     align-items: center;
     gap: 0.5rem;
     padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--text-dark);
     border-radius: var(--border-radius);
     color: var(--text-white);
     text-decoration: none;
     transition: all var(--transition-fast);
+    border: 2px solid var(--text-dark);
 }
 
 .badge-link:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: var(--text-dark);
     transform: translateY(-2px);
 }
 
