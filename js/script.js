@@ -219,28 +219,95 @@ counters.forEach(counter => {
     counterObserver.observe(counter);
 });
 
-// Form validation (if contact form is added)
-const forms = document.querySelectorAll('form');
+// Contact form handling
+const contactForm = document.getElementById('contactForm');
 
-forms.forEach(form => {
-    form.addEventListener('submit', function(e) {
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const formData = new FormData(form);
+        // Get form data
+        const formData = new FormData(contactForm);
         const formObject = {};
         
         formData.forEach((value, key) => {
             formObject[key] = value;
         });
         
-        // Here you would typically send the data to your backend
-        console.log('Form submitted:', formObject);
+        // Validate required fields
+        const requiredFields = ['name', 'email', 'subject', 'message', 'consent'];
+        let isValid = true;
         
-        // Show success message
-        showNotification('Message envoyé avec succès!', 'success');
-        form.reset();
+        requiredFields.forEach(field => {
+            const input = contactForm.querySelector(`[name="${field}"]`);
+            if (!input.value.trim() || (input.type === 'checkbox' && !input.checked)) {
+                input.style.borderColor = 'var(--primary-red)';
+                isValid = false;
+            } else {
+                input.style.borderColor = '#28a745';
+            }
+        });
+        
+        if (!isValid) {
+            showNotification('Veuillez remplir tous les champs obligatoires.', 'error');
+            return;
+        }
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailInput = contactForm.querySelector('[name="email"]');
+        if (!emailRegex.test(emailInput.value)) {
+            emailInput.style.borderColor = 'var(--primary-red)';
+            showNotification('Veuillez entrer une adresse email valide.', 'error');
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (replace with actual API call)
+        setTimeout(() => {
+            console.log('Form submitted:', formObject);
+            
+            // Show success message
+            showNotification('Message envoyé avec succès! Nous vous répondrons dans les plus brefs délais.', 'success');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // Reset field borders
+            contactForm.querySelectorAll('input, select, textarea').forEach(field => {
+                field.style.borderColor = '#e0e0e0';
+            });
+        }, 2000);
     });
-});
+    
+    // Real-time validation
+    const formFields = contactForm.querySelectorAll('input, select, textarea');
+    formFields.forEach(field => {
+        field.addEventListener('blur', function() {
+            if (this.hasAttribute('required') && !this.value.trim()) {
+                this.style.borderColor = 'var(--primary-red)';
+            } else if (this.type === 'email' && this.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                this.style.borderColor = emailRegex.test(this.value) ? '#28a745' : 'var(--primary-red)';
+            } else if (this.value) {
+                this.style.borderColor = '#28a745';
+            }
+        });
+        
+        field.addEventListener('focus', function() {
+            this.style.borderColor = 'var(--primary-turquoise)';
+        });
+    });
+}
 
 // Notification system
 function showNotification(message, type = 'info') {
