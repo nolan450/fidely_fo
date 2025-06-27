@@ -39,9 +39,17 @@
     box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -51,12 +59,17 @@ body {
     color: var(--text-dark);
     background-color: var(--bg-white);
     overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Typography */
@@ -383,6 +396,61 @@ h4 { font-size: 1.4rem; }
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
+    position: relative;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-main);
+    border-radius: 2px;
+}
+
+/* Section Separators */
+.section-separator {
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--gradient-main) 20%, var(--gradient-main) 80%, transparent 100%);
+    margin: 5rem 0;
+    opacity: 0.3;
+}
+
+.section-divider {
+    text-align: center;
+    margin: 6rem 0;
+    position: relative;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    height: 1px;
+    background: var(--gradient-main);
+}
+
+.section-divider::before {
+    left: calc(50% - 120px);
+}
+
+.section-divider::after {
+    right: calc(50% - 120px);
+}
+
+.divider-icon {
+    background: var(--bg-white);
+    padding: 0 20px;
+    font-size: 1.5rem;
+    color: transparent;
+    background: var(--gradient-main);
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
 .section-header h2 {
@@ -396,10 +464,74 @@ h4 { font-size: 1.4rem; }
     margin: 0 auto;
 }
 
+/* Section Backgrounds - Alternating */
+section:nth-child(even) {
+    background: var(--bg-light);
+    position: relative;
+}
+
+section:nth-child(even)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(244, 180, 0, 0.3) 50%, transparent 100%);
+}
+
+section:nth-child(even)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 185, 241, 0.3) 50%, transparent 100%);
+}
+
+/* Geometric patterns for sections */
+.features::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(244, 180, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.benefits::before {
+    content: '';
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(161, 66, 244, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.pricing::before {
+    content: '';
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(0, 185, 241, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
 /* Features Section */
 .features {
     padding: 5rem 0;
     background: var(--bg-light);
+    position: relative;
 }
 
 .features-grid {
@@ -1075,8 +1207,16 @@ h4 { font-size: 1.4rem; }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
     .container {
         padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .nav-menu {
@@ -1114,6 +1254,12 @@ h4 { font-size: 1.4rem; }
         transform: rotate(-45deg) translate(7px, -6px);
     }
     
+    .hero {
+        padding-top: 100px;
+        position: relative;
+        z-index: 1;
+    }
+    
     .hero .container {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1127,6 +1273,14 @@ h4 { font-size: 1.4rem; }
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+    }
+    
+    .app-badges {
+        text-align: center;
+    }
+    
+    .app-tagline {
+        text-align: center;
     }
     
     .badges {
