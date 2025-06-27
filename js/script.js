@@ -67,16 +67,32 @@ window.addEventListener('scroll', function() {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
         
         if (target) {
-            const headerHeight = header.offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight;
+            // Close mobile menu if open
+            if (navToggle && navMenu) {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('nav-open');
+            }
             
+            // Calculate scroll position
+            const headerHeight = header ? header.offsetHeight : 80;
+            const targetPosition = target.offsetTop - headerHeight - 20;
+            
+            // Smooth scroll to target
             window.scrollTo({
-                top: targetPosition,
+                top: Math.max(0, targetPosition),
                 behavior: 'smooth'
             });
+            
+            // Optional: Add active state feedback
+            anchor.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                anchor.style.transform = '';
+            }, 150);
         }
     });
 });

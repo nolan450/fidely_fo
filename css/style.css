@@ -95,6 +95,11 @@ h4 { font-size: 1.4rem; }
     transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
+    transform: scale(1);
+}
+
+.btn:active {
+    transform: scale(0.98);
 }
 
 .btn-primary {
