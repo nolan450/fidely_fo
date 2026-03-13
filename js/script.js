@@ -74,38 +74,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             return;
         }
         
-        console.log('Trying to navigate to:', targetId);
         const target = document.querySelector(targetId);
-        
+
         if (target) {
-            console.log('Target found:', target);
-            
             // Close mobile menu if open
             if (navToggle && navMenu) {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('nav-open');
             }
-            
+
             // Calculate scroll position
             const headerHeight = header ? header.offsetHeight : 80;
             const targetPosition = target.offsetTop - headerHeight - 20;
-            
-            console.log('Scrolling to position:', targetPosition);
-            
+
             // Smooth scroll to target
             window.scrollTo({
                 top: Math.max(0, targetPosition),
                 behavior: 'smooth'
             });
-            
-            // Optional: Add active state feedback
+
             anchor.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 anchor.style.transform = '';
             }, 150);
-        } else {
-            console.log('Target not found for:', targetId);
         }
     });
 });
@@ -130,25 +122,23 @@ if (backToTopButton) {
     });
 }
 
-// Pricing card animations
-const pricingCards = document.querySelectorAll('.pricing-card');
+// Credit pack hover: dim siblings on hover
+const creditPacks = document.querySelectorAll('.credit-pack');
 
-pricingCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        // Add hover effect to other cards
-        pricingCards.forEach(otherCard => {
-            if (otherCard !== card) {
-                otherCard.style.opacity = '0.7';
-                otherCard.style.transform = 'scale(0.95)';
+creditPacks.forEach(pack => {
+    pack.addEventListener('mouseenter', function() {
+        creditPacks.forEach(other => {
+            if (other !== pack) {
+                other.style.opacity = '0.6';
+                other.style.transform = 'scale(0.97)';
             }
         });
     });
 
-    card.addEventListener('mouseleave', function() {
-        // Reset all cards
-        pricingCards.forEach(otherCard => {
-            otherCard.style.opacity = '1';
-            otherCard.style.transform = '';
+    pack.addEventListener('mouseleave', function() {
+        creditPacks.forEach(other => {
+            other.style.opacity = '1';
+            other.style.transform = '';
         });
     });
 });
@@ -283,7 +273,6 @@ if (contactForm) {
         
         // Simulate form submission (replace with actual API call)
         setTimeout(() => {
-            console.log('Form submitted:', formObject);
             
             // Show success message
             showNotification('Message envoyé avec succès! Nous vous répondrons dans les plus brefs délais.', 'success');
